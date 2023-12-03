@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      background-color: black;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: red;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: black;
+      color: red;
+      border: 1px solid red;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .loading {
+      display: none;
+      margin-top: 10px;
+      color: red;
+    }
+
+    .success-message {
+      color: red;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <form onsubmit="return checkLogin()">
+    <label for="usuario">Usuário</label>
+    <input type="text" id="usuario" name="usuario" value="" required>
+
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" name="senha" value="" required>
+
+    <button type="submit" id="login-button">Apertar</button>
+
+    <p class="error-message" id="error-message"></p>
+    <p class="loading" id="loading-message">Carregando...</p>
+    <p class="success-message" id="success-message">Transação efetuada com sucesso!</p>
+  </form>
+
+  <script>
+    function checkLogin() {
+      var usuario = document.getElementById("usuario").value;
+      var senha = document.getElementById("senha").value;
+
+      // Simular verificação de usuário e senha (pode ser substituído por sua lógica de autenticação)
+      setTimeout(function() {
+        // Verifica se o usuário e senha são corretos
+        if (usuario === "Noname" && senha === "hacked") {
+          // Redirecionar para a página de manutenção
+          window.location.href = "manutencao.html";
+        } else {
+          // Exibir mensagem de erro
+          document.getElementById("error-message").innerText = "Usuário ou senha errado.";
+
+          // Ocultar mensagem de sucesso
+          document.getElementById("success-message").style.display = "none";
+        }
+
+        // Ocultar animação de carregamento
+        document.getElementById("loading-message").style.display = "none";
+      }, 2000); // Simulando uma verificação demorada (pode ser ajustado conforme necessário)
+      
+      // Exibir animação de carregamento
+      document.getElementById("loading-message").style.display = "block";
+
+      // Impedir envio do formulário
+      return false;
+    }
+  </script>
+
+</body>
+</html>
